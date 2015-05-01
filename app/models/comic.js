@@ -1,0 +1,32 @@
+import DS from 'ember-data';
+
+export default DS.Model.extend({
+  digitalId: DS.attr('number'),
+  title: DS.attr('string'),
+  issueNumber: DS.attr('number'),
+  variantDescription: DS.attr('string'),
+  description: DS.attr('string'),
+  modified: DS.attr('date'),
+  isbn: DS.attr('string'),
+  upc: DS.attr('string'),
+  diamondCode: DS.attr('string'),
+  ean: DS.attr('string'),
+  issn: DS.attr('string'),
+  format: DS.attr('string'),
+  pageCount: DS.attr('string'),
+  textObjects: DS.attr(),
+  resourceURI: DS.attr('string'),
+  urls: DS.attr(),
+  series: DS.attr(),
+  variants: DS.attr(),
+  collections: DS.attr(),
+  collectedIssues: DS.attr(),
+  dates: DS.attr(),
+  prices: DS.attr(),
+  thumbnail: DS.attr(),
+  images: DS.attr(),
+  creators: DS.attr(),
+  characters: DS.hasMany('character'),
+  stories: DS.attr(),
+  events: DS.attr()
+});
