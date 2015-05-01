@@ -10,8 +10,11 @@ export default Ember.View.extend({
   },
 
   onScroll: function (event) {
-    var $loadmore = this.$('#loadmore'),
-        shouldLoadMore = $loadmore.offset().top <= $(window).scrollTop() + $(window).height();
+    var $loadmore = this.$('#loadmore');
+    if (!$loadmore.length) {
+      return;
+    }
+    var shouldLoadMore = $loadmore.offset().top <= $(window).scrollTop() + $(window).height();
     this.get('controller').set('shouldLoadMore', shouldLoadMore);
   }
 });

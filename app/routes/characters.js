@@ -1,9 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+
   model: function () {
     var _this = this,
         charactersFilter = this.get('charactersFilter');
+
     if (!Ember.isEmpty(charactersFilter)) {
       return this.store.find('character', {
         nameStartsWith: charactersFilter
@@ -12,11 +14,20 @@ export default Ember.Route.extend({
     return this.store.find('character');
   },
 
+  setupController: function (controller, model) {
+    controller.setProperties({
+      model: model,
+      loading: false
+    });
+    controller.notifyPropertyChange('metadata');
+  },
+
   actions: {
     updateCharactersFilter: function (charactersFilter) {
       this.set('charactersFilter', charactersFilter);
       Ember.run.cancel(this.charactersFilterTimeout);
       this.charactersFilterTimeout = Ember.run.later(this, function () {
+        this.store.unloadAll('character');
         this.refresh();
       }, 500);
     },
@@ -24,11 +35,15 @@ export default Ember.Route.extend({
     fetchCharacters: function (options) {
       var controller = this.get('controller');
       controller.set('isLoadingMore', true);
-      this.store.find('character', options).then(function () {
+      this.store.find('character', options).then(function (characters) {
         controller.set('isLoadingMore', false);
+        controller.get('model').addObjects(characters.toArray());
         controller.notifyPropertyChange('metadata');
       });
-    }
+    },
 
+    loading: function () {
+      this.controllerFor('characters').set('loading', true);
+    }
   }
 });
