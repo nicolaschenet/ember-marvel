@@ -1,0 +1,13 @@
+<div class="section">
+  <strong>{{series.available}}</strong> series available
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <ul class="collection">
+    {{#each serie in series.items}}
+      <li class="collection-item">{{serie.name}}</li>
+    {{/each}}
+  </ul>
+</div>

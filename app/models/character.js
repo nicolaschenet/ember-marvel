@@ -6,5 +6,8 @@ export default DS.Model.extend({
   thumbnail: DS.attr(),
   modified: DS.attr('date'),
   resourceURI: DS.attr('string'),
-  urls: DS.attr()
+  urls: DS.attr(),
+  comics: DS.attr(),
+  events: DS.attr(),
+  series: DS.attr()
 });

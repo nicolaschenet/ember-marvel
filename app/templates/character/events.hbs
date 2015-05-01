@@ -1,0 +1,13 @@
+<div class="section">
+  <strong>{{events.available}}</strong> events available
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <ul class="collection">
+    {{#each event in events.items}}
+      <li class="collection-item">{{event.name}}</li>
+    {{/each}}
+  </ul>
+</div>

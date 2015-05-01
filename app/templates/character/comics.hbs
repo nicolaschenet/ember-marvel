@@ -1,0 +1,13 @@
+<div class="section">
+  <strong>{{comics.available}}</strong> comics available
+</div>
+
+<div class="divider"></div>
+
+<div class="section">
+  <ul class="collection">
+    {{#each comic in comics.items}}
+      <li class="collection-item">{{comic.name}}</li>
+    {{/each}}
+  </ul>
+</div>
