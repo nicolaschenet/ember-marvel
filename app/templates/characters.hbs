@@ -1,0 +1,36 @@
+{{#paper-toolbar}}
+  <h2 class="md-toolbar-tools">
+    {{#paper-sidenav-toggle}}
+      {{paper-icon icon="menu"}}
+    {{/paper-sidenav-toggle}}
+    Characters
+  </h2>
+{{/paper-toolbar}}
+
+{{#paper-content class="md-padding"}}
+  {{paper-text label="Search for characters" value=charactersFilter class="characters--filter"}}
+{{/paper-content}}
+
+
+<p>Total: {{total}} / Displaying {{count}} results from {{offset}}</p>
+<p>Page {{page}} / {{nbPages}}</p>
+
+{{#each character in model itemController='character'}}
+  {{#paper-card}}
+    {{#if character.thumbnailURL}}
+      <img {{bind-attr src="character.thumbnailURL" alt="character.name"}}>
+    {{/if}}
+    {{#paper-card-content}}
+      <h2>{{character.name}}</h2>
+      <p>{{character.description}}</p>
+    {{/paper-card-content}}
+  {{/paper-card}}
+{{/each}}
+
+{{#unless onLastPage}}
+  <div layout-padding>
+    {{#paper-button disabled=isLoadingMore action="loadmore" id="loadmore"}}
+      {{loadmoreLabel}}
+    {{/paper-button}}
+  </div>
+{{/unless}}
