@@ -1,13 +1,11 @@
-<div class="section">
-  <strong>{{series.available}}</strong> series available
-</div>
-
-<div class="divider"></div>
-
-<div class="section">
-  <ul class="collection">
-    {{#each serie in series.items}}
-      <li class="collection-item">{{serie.name}}</li>
-    {{/each}}
-  </ul>
+<ul class="collection with-header">
+  <li class="collection-header orange darken-2 white-text">
+    <h5>{{series.available}} series available</h5>
+  </li>
+  {{#each serie in series.items}}
+    <li class="collection-item flow-text">{{serie.name}}</li>
+  {{/each}}
+</ul>
+<div class="center-align section">
+  {{md-btn id="loadmore" text="Load more series" buttonType='large' class="orange darken-2"}}
 </div>
