@@ -6,7 +6,12 @@ export default Ember.Route.extend({
     this.store.unloadAll('comic');
     return this.store.find('comic', {
       characters: [characterId],
-      orderBy: '-focDate' 
+      orderBy: '-focDate'
     });
+  },
+
+  setupController: function (controller, model) {
+    this._super(controller, model);
+    controller.notifyPropertyChange('metadata');
   }
 });
