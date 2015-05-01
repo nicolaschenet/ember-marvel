@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
 
   offset: Ember.computed.alias('metadata.offset'),
   limit: Ember.computed.alias('metadata.limit'),
+  count: Ember.computed.alias('metadata.count'),
   total: Ember.computed.alias('metadata.total'),
 
   page: function () {
@@ -18,7 +19,9 @@ export default Ember.Controller.extend({
     return Math.ceil(this.get('total') / this.get('limit'));
   }.property('total', 'limit'),
 
-  onLastPage: Ember.computed.equal('page', 'nbPages'),
+  onLastPage: function () {
+    return this.get('page') === this.get('nbPages');
+  }.property('page', 'nbPages'),
 
   loadmoreLabel: function () {
     return this.get('isLoadingMore') ? 'Loading more characters...' : 'Load more characters';
@@ -40,10 +43,16 @@ export default Ember.Controller.extend({
 
   actions: {
     loadmore: function () {
-      var offset = this.get('offset') + this.get('limit');
-      this.send('fetchCharacters', {
-        offset: offset
-      });
+      var charactersFilter = this.get('charactersFilter'),
+          offset = this.get('offset') + this.get('limit'),
+          options = { offset : offset };
+
+      if (this.get('charactersFilter')) {
+        options = Ember.merge(options, {
+          nameStartsWith: charactersFilter
+        });
+      }
+      this.send('fetchCharacters', options);
     }
   }
 
