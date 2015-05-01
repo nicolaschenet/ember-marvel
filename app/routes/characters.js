@@ -3,8 +3,9 @@ import Ember from 'ember';
 export default Ember.Route.extend({
 
   model: function () {
-    var _this = this,
-        charactersFilter = this.get('charactersFilter');
+    var charactersFilter = this.get('charactersFilter');
+
+    this.store.unloadAll('character');
 
     if (!Ember.isEmpty(charactersFilter)) {
       return this.store.find('character', {
@@ -27,7 +28,6 @@ export default Ember.Route.extend({
       this.set('charactersFilter', charactersFilter);
       Ember.run.cancel(this.charactersFilterTimeout);
       this.charactersFilterTimeout = Ember.run.later(this, function () {
-        this.store.unloadAll('character');
         this.refresh();
       }, 500);
     },
