@@ -12,25 +12,34 @@
 {{/paper-content}}
 
 
-<p>Total: {{total}} / Displaying {{count}} results from {{offset}}</p>
-<p>Page {{page}} / {{nbPages}}</p>
-
-{{#each character in model itemController='character'}}
-  {{#paper-card}}
-    {{#if character.thumbnailURL}}
-      <img {{bind-attr src="character.thumbnailURL" alt="character.name"}}>
-    {{/if}}
-    {{#paper-card-content}}
-      <h2>{{character.name}}</h2>
-      <p>{{character.description}}</p>
-    {{/paper-card-content}}
-  {{/paper-card}}
-{{/each}}
-
-{{#unless onLastPage}}
-  <div layout-padding>
-    {{#paper-button disabled=isLoadingMore action="loadmore" id="loadmore"}}
-      {{loadmoreLabel}}
-    {{/paper-button}}
+{{#if loading}}
+  <div layout-padding class="characters--loading">
+    <img src="https://33.media.tumblr.com/755c24d727d09e3fe994a244a6a9f7c8/tumblr_nmysmyzFyf1tsicpho1_500.gif">
+    <p>Loading your stuff ;)</p>
   </div>
-{{/unless}}
+{{else}}
+
+  <p layout-padding>Displaying {{count}} characters out of {{total}} - Page {{page}} / {{nbPages}}</p>
+
+  {{#each character in model itemController='character'}}
+    {{#paper-card}}
+      {{#if character.thumbnailURL}}
+        <img {{bind-attr src="character.thumbnailURL" alt="character.name"}}>
+      {{/if}}
+      {{#paper-card-content}}
+        <h2>{{character.name}}</h2>
+        <p>{{character.description}}</p>
+      {{/paper-card-content}}
+    {{/paper-card}}
+  {{/each}}
+
+  {{#unless onLastPage}}
+    <div layout-padding>
+      {{#paper-button disabled=isLoadingMore action="loadmore" id="loadmore"}}
+        {{loadmoreLabel}}
+      {{/paper-button}}
+    </div>
+  {{/unless}}
+
+
+{{/if}}
