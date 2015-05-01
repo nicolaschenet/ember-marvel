@@ -1,45 +1,54 @@
-{{#paper-toolbar}}
-  <h2 class="md-toolbar-tools">
-    {{#paper-sidenav-toggle}}
-      {{paper-icon icon="menu"}}
-    {{/paper-sidenav-toggle}}
-    Characters
-  </h2>
-{{/paper-toolbar}}
+<div class="container">
+  <div class="row">
+    <div class="col s12">
 
-{{#paper-content class="md-padding"}}
-  {{paper-text label="Search for characters" value=charactersFilter class="characters--filter"}}
-{{/paper-content}}
+      <div class="section">
+        {{md-input label="Search for your favorite characters"  value=charactersFilter}}
+      </div>
+
+      {{#if loading}}
 
 
-{{#if loading}}
-  <div layout-padding class="characters--loading">
-    <img src="https://33.media.tumblr.com/755c24d727d09e3fe994a244a6a9f7c8/tumblr_nmysmyzFyf1tsicpho1_500.gif">
-    <p>Loading your stuff ;)</p>
-  </div>
-{{else}}
+        <div class="valign-wrapper Characters-loader">
+          <div class="center-align valign">
+            {{md-loader mode="circular"}}
+            <p>Loading your stuff ;)</p>
+          </div>
+        </div>
 
-  <p layout-padding>Displaying {{count}} characters out of {{total}} - Page {{page}} / {{nbPages}}</p>
+      {{else}}
 
-  {{#each character in model itemController='character'}}
-    {{#paper-card}}
-      {{#if character.thumbnailURL}}
-        <img {{bind-attr src="character.thumbnailURL" alt="character.name"}}>
+        <div class="section">Displaying {{count}} characters out of {{total}}</div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          {{#each character in model itemController='character'}}
+
+            {{#md-card title=character.name image=character.thumbnailURL}}
+              {{#md-card-content}}
+                {{character.description}}
+              {{/md-card-content}}
+              {{#md-card-action}}
+                {{#link-to 'character.comics' character}}
+                  Learn more about {{character.name}}
+                {{/link-to}}
+              {{/md-card-action}}
+
+            {{/md-card}}
+
+          {{/each}}
+
+          {{#unless onLastPage}}
+            <div class="center-align section">
+              {{md-btn id="loadmore" text=loadmoreLabel action="loadmore" buttonType='large'}}
+            </div>
+          {{/unless}}
+
+        </div>
+
       {{/if}}
-      {{#paper-card-content}}
-        <h2>{{character.name}}</h2>
-        <p>{{character.description}}</p>
-      {{/paper-card-content}}
-    {{/paper-card}}
-  {{/each}}
 
-  {{#unless onLastPage}}
-    <div layout-padding>
-      {{#paper-button disabled=isLoadingMore action="loadmore" id="loadmore"}}
-        {{loadmoreLabel}}
-      {{/paper-button}}
     </div>
-  {{/unless}}
-
-
-{{/if}}
+  </div>
+</div>

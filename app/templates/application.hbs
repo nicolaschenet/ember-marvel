@@ -1,25 +1,31 @@
-{{#paper-nav-container classNames="ember-app"}}
-
-  {{#paper-sidenav classNames="md-sidenav-left md-whiteframe-z2" flex-layout="column" flex=true}}
-
-    {{#paper-toolbar}}
-      <div class="md-toolbar-tools">
-        <h2>EmberMarvel</h2>
+<div class="navbar-fixed">
+  {{#md-navbar name='Ember Marvel'}}
+    <li>{{#link-to 'characters'}}Characters{{/link-to}}</li>
+  {{/md-navbar}}
+</div>
+<main>
+  {{outlet}}
+</main>
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">What is Ember Marvel ?</h5>
+        <p class="grey-text text-lighten-4">
+          Ember Marvel is just a playground using EmberJS, the Marvel API, and some Material design.
+        </p>
       </div>
-    {{/paper-toolbar}}
-
-    {{#paper-content}}
-      <nav class="sidenav">
-        <ul>
-          <li>{{#link-to "index"}}Introduction{{/link-to}}</li>
-          <li>{{#link-to "characters"}}Characters{{/link-to}}</li>
-        </ul>
-      </nav>
-    {{/paper-content}}
-  {{/paper-sidenav}}
-
-  {{#paper-content flex-layout="column" flex=true}}
-    {{outlet}}
-  {{/paper-content}}
-
-{{/paper-nav-container}}
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      <a class="grey-text text-lighten-4" href="http://marvel.com">
+        Data provided by Marvel. © 2015 MARVEL
+      </a>
+      <a class="grey-text text-lighten-4 right" href="https://github.com/nicolaschenet/ember-marvel">
+        See on Github
+      </a>
+    </div>
+  </div>
+</footer>
+{{md-modal-container}}
