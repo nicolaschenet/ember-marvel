@@ -1,11 +1,14 @@
-<ul class="collection with-header">
-  <li class="collection-header teal white-text">
-    <h5>{{metadata.total}} comics available</h5>
-  </li>
-  {{#each comic in model}}
-    <li class="collection-item flow-text">{{comic.title}}</li>
+<div class="Comic-drawer">
+  {{#each comic in model itemController="comic"}}
+    <div class="Comic">
+      {{#md-card image=comic.thumbnailURL}}
+        {{#md-card-content}}
+          {{comic.title}}
+        {{/md-card-content}}
+      {{/md-card}}
+    </div>
   {{/each}}
-</ul>
-<div class="center-align section">
+</div>
+<div class="center-align">
   {{md-btn id="loadmore" text="Load more comics" buttonType='large'}}
 </div>
