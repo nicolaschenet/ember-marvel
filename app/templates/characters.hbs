@@ -8,13 +8,7 @@
 
       {{#if loading}}
 
-
-        <div class="valign-wrapper Characters-loader">
-          <div class="center-align valign">
-            {{md-loader mode="circular"}}
-            <p>Loading your stuff ;)</p>
-          </div>
-        </div>
+        {{partial 'loading'}}
 
       {{else}}
 
@@ -27,7 +21,7 @@
 
             {{#md-card title=character.name image=character.thumbnailURL}}
               {{#md-card-content}}
-                {{character.description}}
+                <p class="flow-text">{{character.description}}</p>
               {{/md-card-content}}
               {{#md-card-action}}
                 {{#link-to 'character.comics' character}}
