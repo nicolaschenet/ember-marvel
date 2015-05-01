@@ -13,9 +13,17 @@ module.exports = function(environment) {
       }
     },
 
+    contentSecurityPolicy: {
+      'connect-src': "'self' *.marvel.com",
+      'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com",
+      'font-src': "'self' https://fonts.gstatic.com",
+      'img-src': "'self' http://i.annihil.us"
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      API_KEY: '8c62bcff78ff01f2141124bbf5fb38b7'
     }
   };
 
