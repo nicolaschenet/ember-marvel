@@ -25,6 +25,7 @@ module.exports = function(environment) {
       // when it is created
       API_KEY: '8c62bcff78ff01f2141124bbf5fb38b7'
     }
+
   };
 
   if (environment === 'development') {
