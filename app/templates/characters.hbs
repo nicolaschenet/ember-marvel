@@ -18,7 +18,6 @@
 
         <div class="section">
           {{#each character in model itemController='character'}}
-
             {{#md-card title=character.name image=character.thumbnailURL}}
               {{#md-card-content}}
                 <p class="flow-text">{{character.description}}</p>
@@ -28,11 +27,8 @@
                   Learn more about {{character.name}}
                 {{/link-to}}
               {{/md-card-action}}
-
             {{/md-card}}
-
           {{/each}}
-
           {{#unless onLastPage}}
             <div class="center-align section">
               {{md-btn id="loadmore" text=loadmoreLabel action="loadmore" buttonType='large'}}
