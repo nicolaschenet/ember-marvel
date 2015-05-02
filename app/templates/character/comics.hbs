@@ -1,9 +1,17 @@
+{{#md-card-panel class="white" bodyClass="orange-text"}}
+  <span class="right">
+    <span class="grey-text text-lighten-1">Sorted by</span>
+    <strong class="grey-text text-darken-2">focDate</strong>
+  </span>
+  {{metadata.total}} comics available
+{{/md-card-panel}}
 <div class="Comic-drawer">
   {{#each comic in model itemController="comic"}}
     <div class="Comic">
       {{#md-card image=comic.thumbnailURL}}
         {{#md-card-content}}
-          {{comic.title}}
+          <strong>{{comic.title}}</strong><br>
+          {{comic.format}} - <span class="grey-text">{{comic.pageCount}} pages</span>
         {{/md-card-content}}
       {{/md-card}}
     </div>

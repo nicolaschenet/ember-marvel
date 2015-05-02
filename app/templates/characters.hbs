@@ -12,9 +12,9 @@
 
       {{else}}
 
-        <div class="section">Displaying {{count}} characters out of {{total}}</div>
-
-        <div class="divider"></div>
+        {{#md-card-panel class="teal" bodyClass="white-text"}}
+          {{total}} characters
+        {{/md-card-panel}}
 
         <div class="section">
           {{#each character in model itemController='character'}}
