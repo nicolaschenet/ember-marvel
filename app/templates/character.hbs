@@ -1,8 +1,14 @@
 {{md-parallax image=thumbnailURL}}
-<div class="white">
+<div class="section grey darken-4">
   <div class="container">
-    <h4 class="teal-text">{{name}}</h4>
-    <p class="flow-text">{{description}}</p>
+    <h4 class="white-text">{{name}}</h4>
+    <p class="flow-text grey-text text-lighten-1">{{description}}</p>
+  </div>
+
+</div>
+
+<div class="section white Character-overview">
+  <div class="container">
     <ul class="tabs flow-text">
       <li class="tab col s4">
         {{link-to 'Comics' 'character.comics'}}
@@ -16,6 +22,7 @@
     </ul>
   </div>
 </div>
+
 <div class="section grey lighten-4">
   <div class="container">
     {{outlet}}

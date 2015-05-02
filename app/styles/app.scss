@@ -15,6 +15,16 @@
   }
 }
 
+.Character-overview {
+  padding-bottom: 0;
+  .tabs {
+    .tab {
+      line-height: 2rem;
+      height: 1rem;
+    }
+  }
+}
+
 @media #{$small-and-down} {
   .Comic-drawer {
     -webkit-column-count: 1;
