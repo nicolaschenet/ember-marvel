@@ -5,7 +5,7 @@ import {
 
 moduleForModel('comic', {
   // Specify the other units that are required for this test.
-  needs: []
+  needs: ['model:character']
 });
 
 test('it exists', function(assert) {

@@ -1,5 +1,3 @@
-import DS from 'ember-data';
-import Ember from 'ember';
 import ApplicationSerializer from './application';
 
 export default ApplicationSerializer.extend({
@@ -10,7 +8,7 @@ export default ApplicationSerializer.extend({
       comics.forEach(function (comic) {
         comic[relation] = comic[relation].items.map(function (item) {
           return parseInt(item.resourceURI.split('/').get('lastObject'));
-        })
+        });
       });
     });
     return {
